@@ -8,7 +8,7 @@ A helloworld web application written by node.js and Go.
 
 ## Running the server
 
-Check out `config/` files.
+Check out [`config/`](config/) files.
 
 ```bash
 > sudo systemctl enable nginx
