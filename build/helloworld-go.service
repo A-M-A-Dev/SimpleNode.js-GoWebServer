@@ -1,0 +1,11 @@
+[Unit]
+Description=helloworld go app
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2s
+ExecStart=<path/to/go/executable>
+
+[Install]
+WantedBy=multi-user.target
