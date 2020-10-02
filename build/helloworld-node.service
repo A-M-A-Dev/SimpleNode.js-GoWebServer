@@ -1,0 +1,11 @@
+[Unit]
+Description=helloworld nodejs app
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2s
+ExecStart=/usr/bin/node <path/to/nodejs/main/file>
+
+[Install]
+WantedBy=multi-user.target
