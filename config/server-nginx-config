@@ -8,7 +8,7 @@ server {
         server_name _;
 
         location /helloworld {
-                alias /home/ahmad/projects/helloworld;
+                alias </path/to/helloworld/root/dir>;
                 index helloworld.html;
         }
 
