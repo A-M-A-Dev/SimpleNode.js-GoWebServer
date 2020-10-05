@@ -20,3 +20,18 @@ Check out [`config/`](config/) files.
 > sudo systemctl enable helloworld-node
 > sudo systemctl start helloworld-node
 ```
+
+
+## Run load test
+
+- Install Locust:
+  ```bash
+  $ pip install locust
+  ```
+
+- Run the Locust:
+  ```bash
+  locust -f loadtests/<name>.py
+  ```
+
+- Configure, start and monitor loadtests by opening `http://localhost:8089` in your browser.
