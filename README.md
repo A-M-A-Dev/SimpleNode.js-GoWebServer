@@ -8,18 +8,25 @@ A helloworld web application written by node.js and Go.
 
 ## Running the server
 
-Check out [`config/`](config/) files.
+- Check out [`config/`](config/) files.
 
-```bash
-> sudo systemctl enable nginx
-> sudo systemctl start nginx
->
-> sudo systemctl enable helloworld-go
-> sudo systemctl start helloworld-go
->
-> sudo systemctl enable helloworld-node
-> sudo systemctl start helloworld-node
-```
+- Start the *nginx* service
+  ```bash
+  > sudo systemctl enable nginx
+  > sudo systemctl start nginx
+  ```
+
+- Start the *golang* service
+  ```bash
+  > sudo systemctl enable helloworld-go
+  > sudo systemctl start helloworld-go
+  ```
+
+- Start the *node.js* service
+  ```bash
+  > sudo systemctl enable helloworld-node
+  > sudo systemctl start helloworld-node
+  ```
 
 
 ## Run load test
