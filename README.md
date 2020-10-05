@@ -26,12 +26,13 @@ Check out [`config/`](config/) files.
 
 - Install Locust:
   ```bash
-  $ pip install locust
+  > pip install locust
+  > locust --version
   ```
 
 - Run the Locust:
   ```bash
-  locust -f loadtests/<name>.py
+  > locust -f loadtests/<name>.py
   ```
 
 - Configure, start and monitor loadtests by opening `http://localhost:8089` in your browser.
