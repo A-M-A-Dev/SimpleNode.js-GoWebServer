@@ -22,14 +22,22 @@
         integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
         crossorigin="anonymous"></script>
 
-    <!-- Page Scripts -->
-    <script src="assets/main.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- AmaDev Icon -->
+    <link rel="stylesheet" href="assets/amadev-icon/style.css">
+
+    <!-- Page Scripts and Style-->
+    <script src="assets/scripts/main.js"></script>
+    <link rel="stylesheet" href="assets/style/style.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">AmaDev</a>
+            <a class="navbar-brand flex-center" href="#"><i class="fas icon-amadev fa-lg text-light align-middle mr-2"></i><span>Amadev</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -57,12 +65,13 @@
                 <button type="button" onclick="requestToNode()" class="btn btn-warning">Request Node</button>
                 <button type="button" onclick="requestToGo()" class="btn btn-info">Request Go</button>
             </div>
-          </div>
+        </div>
     </div>
 
 
     <!-- Modal -->
-    <div class="modal fade" id="response-modal" tabindex="-1" role="dialog" aria-labelledby="responseModal" aria-hidden="true">
+    <div class="modal fade" id="response-modal" tabindex="-1" role="dialog" aria-labelledby="responseModal"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
