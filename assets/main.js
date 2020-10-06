@@ -1,13 +1,19 @@
-function request(url) {
+function showMessage(title, message) {
+    $('#response-title').html(title);
+    $('#response-message').html(message);
+    $('#response-modal').modal('show');
+}
+
+function request(name, url) {
     $.get(url)
-    	.done((response) => alert(`response: ${response}`))
-        .fail((xhr, status) => alert(`error: ${xhr.status}: ${status}`));
+        .done((response) => showMessage(`${name} response`, response))
+        .fail((xhr, status) => showMessage(`${name} error: ${xhr.status}!`, status));
 }
 
 function requestToNode() {
-    request("node");
+    request("Node.js", "node");
 }
 
 function requestToGo() {
-    request("go");
+    request("GoLang", "go");
 }
