@@ -27,7 +27,13 @@ A helloworld web application written by node.js and Go.
   > sudo systemctl enable helloworld-node
   > sudo systemctl start helloworld-node
   ```
+  
+## Automatic deployment
 
+- Run `deploy/deploy-helloworld` as root like this:
+  ```bash
+  > sudo deploy-helloworld /path/to/helloworld/repository/root
+  ```
 
 ## Run load test
 
