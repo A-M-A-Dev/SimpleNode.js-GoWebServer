@@ -1,14 +1,12 @@
 #!/bin/bash
 
-$path = $1
-
 echo "Pulling from remote..."
-cd $path
+cd $1
 git pull
 
 echo "Building and restarting Golang service..."
 cd server/go
-go build main.go
+/home/ahmad/.go/bin/go build main.go
 systemctl restart helloworld-go
 cd ../../
 
