@@ -11,18 +11,21 @@ A helloworld web application written by node.js and Go.
 - Check out [`config/`](config/) files.
 
 - Start the *nginx* service
+  
   ```bash
   > sudo systemctl enable nginx
   > sudo systemctl start nginx
   ```
 
 - Start the *golang* service
+  
   ```bash
   > sudo systemctl enable helloworld-go
   > sudo systemctl start helloworld-go
   ```
 
 - Start the *node.js* service
+  
   ```bash
   > sudo systemctl enable helloworld-node
   > sudo systemctl start helloworld-node
@@ -30,7 +33,8 @@ A helloworld web application written by node.js and Go.
   
 ## Automatic deployment
 
-- Run `deploy/deploy-helloworld` as root like this:
+- Run *deploy/deploy-helloworld* as root like this:
+  
   ```bash
   > sudo deploy-helloworld /path/to/helloworld/repository/root
   ```
@@ -38,12 +42,14 @@ A helloworld web application written by node.js and Go.
 ## Run load test
 
 - Install Locust:
+  
   ```bash
   > pip install locust
   > locust --version
   ```
 
 - Run the Locust:
+  
   ```bash
   > locust -f loadtests/<name>.py
   ```
