@@ -39,11 +39,3 @@ function request(name, url) {
         .done((response) => showMessage(`${name} response`, response))
         .fail((xhr, status) => showMessage(`${name} error: ${xhr.status}!`, status));
 }
-
-function requestToNode() {
-    request("Node.js", "node");
-}
-
-function requestToGo() {
-    request("GoLang", "go");
-}
