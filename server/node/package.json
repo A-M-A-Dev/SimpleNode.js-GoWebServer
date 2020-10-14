@@ -1,7 +1,11 @@
 {
   "name": "node-helloworld",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "author": "ahmad",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
