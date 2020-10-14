@@ -24,7 +24,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
 
     <!-- AmaDev Icon -->
     <link rel="stylesheet" href="assets/amadev-icon/style.css">
@@ -35,35 +35,61 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-info">
         <div class="container">
-            <a class="navbar-brand flex-center transition" href id="nav-brand"><i class="fas icon-amadev fa-lg align-middle mr-2 transition-1" id="nav-icon"></i><span id="ama" class="bg-transparent text-white rounded-left px-1 transition-1">AMA</span><span id="dev" class="bg-warning text-dark rounded-right border-1 px-1 transition-1">Dev</span></a>
+            <a class="navbar-brand flex-center transition" href id="nav-brand">
+                <i class="fas icon-amadev fa-lg align-middle mr-2 transition-1" id="nav-icon"></i>
+                <span id="ama" class="bg-transparent text-white rounded-left px-1 transition-1">AMA</span>
+                <span id="dev" class="bg-warning text-dark rounded-right border-1 px-1 transition-1">Dev</span>
+            </a>
+        
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">
+                            Home <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                 </ul>
-                <span class="navbar-text">
-                    Hello World!
-                </span>
+
+                <span class="navbar-text">Hello World!</span>
             </div>
         </div>
     </nav>
 
+    <!-- Container -->
     <div class="container bg-light py-4">
+        <!-- Jumbotron -->
         <div class="jumbotron">
             <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple web application created by <a href="http://github.com/A-M-A-Dev" class="text-decoration-none"><i class="fas icon-amadev fa-lg align-middle text-danger"></i> AmaDev</a> group.</p>
+
+            <p class="lead">
+                This is a simple web application created by
+                <a href="http://github.com/A-M-A-Dev" class="text-decoration-none">
+                    <i class="fas icon-amadev fa-lg align-middle text-danger"></i>
+                    AmaDev
+                </a>
+                group.
+            </p>
+
             <hr class="my-4">
-            <p>Request to each Backend:</a></p>
+
+            <p>Request to each Backend:</p>
+
             <div class="mx-auto btn-group" role="group" aria-label="Buttons">
-                <button type="button" onclick="request('Node.js', 'node')" class="btn btn-warning">Request Node.js</button>
-                <button type="button" onclick="request('GoLang', 'go')" class="btn btn-info">Request GoLang</button>
+                <button type="button" onclick="request('Node.js', 'node')" class="btn btn-warning">
+                    Request Node.js
+                </button>
+
+                <button type="button" onclick="request('GoLang', 'go')" class="btn btn-info">
+                    Request GoLang
+                </button>
             </div>
         </div>
     </div>
@@ -89,8 +115,6 @@
             </div>
         </div>
     </div>
-
-
 
 </body>
 
