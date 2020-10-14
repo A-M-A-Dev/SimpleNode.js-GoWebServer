@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "author": "ahmad",
+  "author": "AmaDev",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1"
