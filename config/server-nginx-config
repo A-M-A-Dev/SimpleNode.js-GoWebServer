@@ -12,7 +12,7 @@ server {
                 index helloworld.html;
         }
 
-        error_page 404 /helloworld/404.html?url=$request_uri;
+        error_page 404 /helloworld/404.html;
 
         location /helloworld/go {
                 proxy_set_header Host $host;
