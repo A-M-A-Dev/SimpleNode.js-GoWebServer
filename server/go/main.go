@@ -11,6 +11,6 @@ func helloWorld(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fmt.Println("start a simple web server...")
-	http.HandleFunc("/hw", helloWorld)
+	http.HandleFunc("/", helloWorld)
 	http.ListenAndServe(":8080", nil)
 }
