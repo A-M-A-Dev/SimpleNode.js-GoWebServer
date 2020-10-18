@@ -9,6 +9,10 @@ app.get("/helloworld/node", (_, res) => {
 	res.send("Hello World!!")
 });
 
+app.get("*", (_, res) => {
+	res.redirect("/helloworld/404.html");
+})
+
 app.listen(port, hostname, () => {
 	console.log(`server running at http://${hostname}:${port}/`);
 });
