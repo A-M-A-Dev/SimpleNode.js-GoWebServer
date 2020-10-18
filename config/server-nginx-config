@@ -12,6 +12,8 @@ server {
                 index helloworld.html;
         }
 
+        error_page 404 /helloworld/404.html?url=$request_uri;
+
         location /helloworld/go {
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;

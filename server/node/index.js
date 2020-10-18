@@ -1,4 +1,13 @@
 import express from "express";
+import url from "url";
+
+function fullUrl(req) {
+	return url.format({
+		protocol: req.protocol,
+		host: req.get('host'),
+		pathname: req.originalUrl
+	});
+}
 
 const app = express();
 
@@ -9,8 +18,8 @@ app.get("/helloworld/node", (_, res) => {
 	res.send("Hello World!!")
 });
 
-app.get("*", (_, res) => {
-	res.redirect("/helloworld/404.html");
+app.get("*", (req, res) => {
+	res.redirect(`/helloworld/404.html?url=${fullUrl(req)}`);
 })
 
 app.listen(port, hostname, () => {
