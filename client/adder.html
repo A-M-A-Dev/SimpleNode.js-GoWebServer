@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>AmaDev | HelloWorld</title>
+    <title>AmaDev | Adder</title>
 
     <!-- Icon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -31,7 +31,6 @@
 
     <!-- Page Scripts and Style-->
     <script src="assets/scripts/main.js"></script>
-    <script src="assets/scripts/404.js"></script>
     <link rel="stylesheet" href="assets/style/style.css">
 </head>
 
@@ -52,19 +51,19 @@
 
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href=".">
-                            Home <span class="sr-only">(current)</span>
+                            Home
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="adder.html">
-                            Adder
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            Adder <span class="sr-only">(current)</span>
                         </a>
                     </li>
                 </ul>
 
-                <span class="navbar-text">404 Not Found</span>
+                <span class="navbar-text">Adder</span>
             </div>
         </div>
     </nav>
@@ -72,13 +71,39 @@
     <!-- Container -->
     <div class="container container-full-height bg-light py-4" style="min-height: 90vh;">
         <!-- Jumbotron -->
-        <div class="jumbotron">
-            <h1 class="display-4">404 Not found!</h1>
+        <div class="jumbotron bg-light">
+            <h1 class="display-4">Adder</h1>
 
             <p class="lead">
-                The url <code id="url"></code> , does not exists!
+                Adds two numbers and returns <code>SHA-256</code> encrypted of addition.
             </p>
 
+            <hr class="my-4">
+
+            <p>Try it:</p>
+
+            <div class="mx-auto input-group mb-1">
+                <input type="number" id="first-number" class="form-control" placeholder="First Number" aria-label="First Number" aria-describedby="basic-addon2">
+                <input type="number" id="second-number" class="form-control" placeholder="Second Number" aria-label="Second Number" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button type="button" onclick="adder('node/adder')" class="btn btn-warning">
+                        Evaluate on Node.js
+                    </button>
+                    <button type="button" onclick="adder('go/adder')" class="btn btn-info">
+                        Evaluate on GoLang
+                    </button>
+                </div>
+            </div>
+            <div class="mx-auto input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="btn btn-success" style="cursor:default;">
+                        The <code class="text-warning">SHA-256</code> encrypted result
+                    </span>
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text"><code id="result">=============================EMPTY==============================</code></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -95,6 +120,27 @@
 
     </footer>
     <!-- Footer -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="response-modal" tabindex="-1" role="dialog" aria-labelledby="responseModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="response-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-danger">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="response-message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

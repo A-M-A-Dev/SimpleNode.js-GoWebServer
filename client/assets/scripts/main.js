@@ -36,6 +36,20 @@ function showMessage(title, message) {
 
 function request(name, url) {
     $.get(url)
-        .done((response) => showMessage(`${name} response`, response))
-        .fail((xhr, status) => showMessage(`${name} error: ${xhr.status}!`, status));
+        .done(response => showMessage(`${name} response`, response))
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
+}
+
+function adder(url) {
+    $.ajax({
+        method: 'POST',
+        url: url,
+        contentType: 'application/json',
+        data: JSON.stringify({
+            a: Number($('#first-number').val()),
+            b: Number($('#second-number').val())
+        })
+    })
+        .done(response => $('#result').html(response.sha256))
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
 }
