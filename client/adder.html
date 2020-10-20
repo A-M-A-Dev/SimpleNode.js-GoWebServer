@@ -83,7 +83,7 @@
 
             <p>Try it:</p>
 
-            <div class="mx-auto input-group mb-3">
+            <div class="mx-auto input-group mb-1">
                 <input type="number" id="first-number" class="form-control" placeholder="First Number" aria-label="First Number" aria-describedby="basic-addon2">
                 <input type="number" id="second-number" class="form-control" placeholder="Second Number" aria-label="Second Number" aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -93,7 +93,16 @@
                     <button type="button" onclick="adder('go/adder')" class="btn btn-info">
                         Evaluate on GoLang
                     </button>
-                    <span class="input-group-text ">Result: <span id="result">Empty</span></span>
+                </div>
+            </div>
+            <div class="mx-auto input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="btn btn-success" style="cursor:default;">
+                        The <code class="text-warning">SHA-256</code> encrypted result
+                    </span>
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text"><code id="result">=============================EMPTY==============================</code></span>
                 </div>
             </div>
         </div>
