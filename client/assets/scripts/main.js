@@ -41,13 +41,15 @@ function request(name, url) {
 }
 
 function adder(url) {
-    $.post(
-        url = url,
-        data = {
+    $.ajax({
+        method: 'POST',
+        url: url,
+        contentType: 'application/json',
+        data: JSON.stringify({
             a: Number($('#first-number').val()),
             b: Number($('#second-number').val())
-        },
-        type = 'json')
+        })
+    })
         .done(response => $('#result').html(response.sha256))
-        .fail(response =>{ console.log(response); showMessage(`${name} error: ${response.status}!`, response.statusText);});
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
 }
