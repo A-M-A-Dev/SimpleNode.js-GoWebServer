@@ -48,11 +48,11 @@ function showMessage(title, message) {
 
 window.request = (name, url) => {
     $.get(url)
-        .done((response) => showMessage(`${name} response`, response))
-        .fail((xhr, status) => showMessage(`${name} error: ${xhr.status}!`, status));
+        .done(response => showMessage(`${name} response`, response))
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
 };
 
-window.writeFile = (url) => {
+window.writeFile = url => {
     $.ajax({
         url: url,
         data: {
@@ -65,3 +65,20 @@ window.writeFile = (url) => {
         .done(response => $('#write-result').html(response))
         .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
 };
+
+window.adder = url => {
+    $.ajax({
+        method: 'POST',
+        url: url,
+        contentType: 'application/json',
+        data: JSON.stringify({
+            a: Number($('#first-number').val()),
+            b: Number($('#second-number').val())
+        }),
+        headers: {
+            Accept: "text/plain"
+        }
+    })
+        .done(response => $('#result').html(response.sha256))
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
+}
