@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 function adder(url) {
     $.post(
         url = url,
