@@ -22,7 +22,15 @@ app.get("/helloworld/node", (_, res) => {
 });
 
 app.get("*", (req, res) => {
-	res.redirect(`/helloworld/404.html?url=${fullUrl(req)}`);
+	if (req.accepts('html')) {
+		res.redirect(`/helloworld/404.html?url=${fullUrl(req)}`);
+	} else if (req.accepts('json')) {
+		res.status(404);
+		res.send({ error: 'Not found' });
+	} else {
+		res.status(404);
+		res.type('txt').send('Not found');
+	}
 });
 
 app.listen(port, hostname, () => {
