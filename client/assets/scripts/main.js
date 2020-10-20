@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 $(document).ready(() => {
     $('#nav-brand').hover(() => {
         $('#dev')
