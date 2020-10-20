@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 $(document).ready(() => {
     $('#nav-brand').hover(() => {
         $('#dev')
@@ -36,6 +38,6 @@ function showMessage(title, message) {
 
 function request(name, url) {
     $.get(url)
-        .done((response) => showMessage(`${name} response`, response))
-        .fail((xhr, status) => showMessage(`${name} error: ${xhr.status}!`, status));
+        .done(response => showMessage(`${name} response`, response))
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
 }

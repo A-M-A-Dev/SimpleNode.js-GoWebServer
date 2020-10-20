@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>AmaDev | HelloWorld</title>
+    <title>AmaDev | Adder</title>
 
     <!-- Icon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -31,6 +31,7 @@
 
     <!-- Page Scripts and Style-->
     <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/adder.js"></script>
     <link rel="stylesheet" href="assets/style/style.css">
 </head>
 
@@ -51,19 +52,19 @@
 
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            Home <span class="sr-only">(current)</span>
+                    <li class="nav-item">
+                        <a class="nav-link" href=".">
+                            Home
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="adder.html">
-                            Adder
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            Adder <span class="sr-only">(current)</span>
                         </a>
                     </li>
                 </ul>
 
-                <span class="navbar-text">Hello World!</span>
+                <span class="navbar-text">Adder</span>
             </div>
         </div>
     </nav>
@@ -71,30 +72,29 @@
     <!-- Container -->
     <div class="container container-full-height bg-light py-4" style="min-height: 90vh;">
         <!-- Jumbotron -->
-        <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
+        <div class="jumbotron bg-light">
+            <h1 class="display-4">Adder</h1>
 
             <p class="lead">
-                This is a simple web application created by
-                <a href="http://github.com/A-M-A-Dev" class="text-decoration-none">
-                    <i class="fas icon-amadev fa-lg align-middle text-danger"></i>
-                    AmaDev
-                </a>
-                group.
+                Adds two numbers and returns <code>SHA-256</code> encrypted of addition.
             </p>
 
             <hr class="my-4">
 
-            <p>Request to each Backend:</p>
+            <p>Try it:</p>
 
-            <div class="mx-auto btn-group" role="group" aria-label="Buttons">
-                <button type="button" onclick="request('Node.js', 'node')" class="btn btn-warning">
-                    Request Node.js
-                </button>
-
-                <button type="button" onclick="request('GoLang', 'go')" class="btn btn-info">
-                    Request GoLang
-                </button>
+            <div class="mx-auto input-group mb-3">
+                <input type="number" id="first-number" class="form-control" placeholder="First Number" aria-label="First Number" aria-describedby="basic-addon2">
+                <input type="number" id="second-number" class="form-control" placeholder="Second Number" aria-label="Second Number" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button type="button" onclick="adder('node/adder')" class="btn btn-warning">
+                        Evaluate on Node.js
+                    </button>
+                    <button type="button" onclick="adder('go/adder')" class="btn btn-info">
+                        Evaluate on GoLang
+                    </button>
+                    <span class="input-group-text ">Result: <span id="result">Empty</span></span>
+                </div>
             </div>
         </div>
     </div>
