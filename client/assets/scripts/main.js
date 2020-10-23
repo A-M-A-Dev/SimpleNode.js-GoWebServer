@@ -76,9 +76,9 @@ window.adder = url => {
             b: Number($('#second-number').val())
         }),
         headers: {
-            Accept: "text/plain"
+            Accept: "application/json"
         }
     })
         .done(response => $('#result').html(response.sha256))
-        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
+        .fail(jqXHR => showMessage(`${name} error: ${jqXHR.status}!`, `${jqXHR.statusText}: ${JSON.parse(jqXHR.responseText).message}`));
 }

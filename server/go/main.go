@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"strings"
-	"strconv"
-	"encoding/json"
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"strconv"
+	"strings"
 )
 
 func helloWorld(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +19,6 @@ type AdderData struct {
 }
 
 type ErrorData struct {
-	Error   bool   `json:"error"`
 	Message string `json:"message"`
 }
 
@@ -33,7 +32,7 @@ func writeJsonError(errorData ErrorData, w http.ResponseWriter) {
 	if err != nil {
 		fmt.Fprintf(w, "Error : %s", err)
 	}
-	w.Write(jsonData)
+	http.Error(w, string(jsonData), http.StatusBadRequest)
 }
 
 func writeJsonAdderData(adderData AdderData, w http.ResponseWriter) {
@@ -47,18 +46,18 @@ func writeJsonAdderData(adderData AdderData, w http.ResponseWriter) {
 func adder(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	if r.Method != "POST" {
-		writeJsonError(ErrorData{true, "Sorry, only POST method is supported."} ,w)
+		writeJsonError(ErrorData{"Sorry, only POST method is supported."}, w)
 		return
 	} else if err := r.ParseForm(); err != nil {
-		writeJsonError(ErrorData{true, "Error Parsing POST Data"} ,w)
+		writeJsonError(ErrorData{"Error Parsing POST Data"}, w)
 		return
 	}
 	var adderReqBody AdderRequestBody
 	err := json.NewDecoder(r.Body).Decode(&adderReqBody)
-    if err != nil {
-        writeJsonError(ErrorData{true, "You should send only number as parameters"} ,w)
+	if err != nil {
+		writeJsonError(ErrorData{"You should send only number as parameters"}, w)
 		return
-    }
+	}
 
 	hashAdder := sha256.Sum256([]byte(strconv.Itoa(adderReqBody.A + adderReqBody.B)))
 	hashAdderString := hex.EncodeToString(hashAdder[:])
