@@ -17,9 +17,15 @@ func helloWorld(w http.ResponseWriter, r *http.Request) {
 type AdderData struct {
 	Sha256 string `json:"sha256"`
 }
+
 type ErrorData struct {
 	Error   bool   `json:"error"`
 	Message string `json:"message"`
+}
+
+type AdderRequestBody struct {
+	A int
+	B int
 }
 
 func writeJsonError(errorData ErrorData, w http.ResponseWriter) {
@@ -47,14 +53,14 @@ func adder(w http.ResponseWriter, r *http.Request) {
 		writeJsonError(ErrorData{true, "Error Parsing POST Data"} ,w)
 		return
 	}
-	a, err1 := strconv.Atoi(r.FormValue("a"))
-	b, err2 := strconv.Atoi(r.FormValue("b"))
-	if err1 != nil || err2 != nil {
-		writeJsonError(ErrorData{true, "You should send only number as parameters"} ,w)
+	var adderReqBody AdderRequestBody
+	err := json.NewDecoder(r.Body).Decode(&adderReqBody)
+    if err != nil {
+        writeJsonError(ErrorData{true, "You should send only number as parameters"} ,w)
 		return
-	}
+    }
 
-	hashAdder := sha256.Sum256([]byte(strconv.Itoa(a + b)))
+	hashAdder := sha256.Sum256([]byte(strconv.Itoa(adderReqBody.A + adderReqBody.B)))
 	hashAdderString := hex.EncodeToString(hashAdder[:])
 	data := AdderData{hashAdderString}
 	writeJsonAdderData(data, w)
