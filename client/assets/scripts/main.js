@@ -80,5 +80,5 @@ window.adder = url => {
         }
     })
         .done(response => $('#result').html(response.sha256))
-        .fail((jqXHR) => showMessage(`${name} error: ${jqXHR.status}!`, `${jqXHR.statusText}: ${JSON.parse(jqXHR.responseText).message}`));
+        .fail(jqXHR => showMessage(`${name} error: ${jqXHR.status}!`, `${jqXHR.statusText}: ${JSON.parse(jqXHR.responseText).message}`));
 }
