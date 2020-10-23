@@ -54,9 +54,6 @@ func adder(w http.ResponseWriter, r *http.Request) {
 	}
 	var adderReqBody AdderRequestBody
 	err := json.NewDecoder(r.Body).Decode(&adderReqBody)
-
-	fmt.Printf("%d, %d", adderReqBody.A, adderReqBody.B)
-
 	if err != nil {
 		writeJsonError(ErrorData{"You should send only number as parameters"}, w)
 		return
