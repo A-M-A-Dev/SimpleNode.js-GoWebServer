@@ -1,6 +1,7 @@
 import express from "express";
 import url from "url";
-import bodyParser from "body-parser"
+import bodyParser from "body-parser";
+import fs from "fs";
 
 function fullUrl(req) {
 	return url.format({
@@ -19,6 +20,22 @@ const port = 3000;
 
 app.get("/helloworld/node", (_, res) => {
 	res.send("Hello World!!")
+});
+
+app.get("/helloworld/node/write", (req, res) => {
+	const line = req.query.line
+	fs.readFile('../data/text.txt', 'utf8' , (err, data) => {
+		if (err) {
+		  res.status(400).send(err);
+		}
+		data = data.split("\n");
+		if(isNaN(line)) {
+			res.status(400).send("Please Enter a valid line number");
+		} else if (line-1 < 0 || line-1 >= data.length) {
+			res.status(400).send("Out of range line number");
+		}
+		res.send(data[line-1])
+	  })
 });
 
 app.get("*", (req, res) => {
