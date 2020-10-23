@@ -2,6 +2,8 @@ import express from "express";
 import url from "url";
 import bodyParser from "body-parser";
 import fs from "fs";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 function fullUrl(req) {
 	return url.format({
@@ -17,6 +19,8 @@ app.use(bodyParser.json());
 const hostname = "0.0.0.0";
 const port = 3000;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.get("/helloworld/node", (_, res) => {
 	res.send("Hello World!!")
@@ -24,7 +28,7 @@ app.get("/helloworld/node", (_, res) => {
 
 app.get("/helloworld/node/write", (req, res) => {
 	const line = req.query.line
-	fs.readFile('../data/text.txt', 'utf8' , (err, data) => {
+	fs.readFile(__dirname + '/../data/text.txt', 'utf8' , (err, data) => {
 		if (err) {
 		  res.status(400).send(err);
 		}
