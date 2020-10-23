@@ -52,6 +52,17 @@ window.request = (name, url) => {
         .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
 };
 
+const getErrorMessage = jqXHR => {
+    if (jqXHR.contentType == 'application/json') {
+        return `${jqXHR.statusText}: ${JSON.parse(jqXHR.responseText).message}`;
+    }
+    if ((!jqXHR.contentType && jqXHR.responseText != "") || jqXHR.contentType == 'text/plain') {
+        return `${jqXHR.statusText}: ${jqXHR.responseText}`;
+    }
+    return jqXHR.statusText;
+};
+
+
 window.writeFile = url => {
     $.ajax({
         url: url,
@@ -63,7 +74,7 @@ window.writeFile = url => {
         }
     })
         .done(response => $('#write-result').html(response))
-        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
+        .fail(response => showMessage(`${name} error: ${response.status}!`, getErrorMessage(response)));
 };
 
 window.adder = url => {
@@ -80,5 +91,5 @@ window.adder = url => {
         }
     })
         .done(response => $('#result').html(response.sha256))
-        .fail(jqXHR => showMessage(`${name} error: ${jqXHR.status}!`, `${jqXHR.statusText}: ${JSON.parse(jqXHR.responseText).message}`));
+        .fail(response => showMessage(`${name} error: ${response.status}!`, getErrorMessage(response)));
 }

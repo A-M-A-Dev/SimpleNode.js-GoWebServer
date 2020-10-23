@@ -27,16 +27,20 @@ app.get("/helloworld/node", (_, res) => {
 });
 
 app.get("/helloworld/node/write", (req, res) => {
-	const line = req.query.line
+	const line = req.query.line;
 	fs.readFile(__dirname + '/../data/text.txt', 'utf8' , (err, data) => {
 		if (err) {
-		  res.status(400).send(err);
+			res.status(400).send(err);
+			return;
 		}
 		data = data.split("\n");
 		if(isNaN(line)) {
 			res.status(400).send("Please Enter a valid line number");
-		} else if (line-1 < 0 || line-1 >= data.length) {
+			return;
+		}
+		if (line-1 < 0 || line-1 >= data.length) {
 			res.status(400).send("Out of range line number");
+			return;
 		}
 		res.send(data[line-1])
 	  })
