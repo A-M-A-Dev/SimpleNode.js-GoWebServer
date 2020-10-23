@@ -1,3 +1,5 @@
+import "./bootstrap-input-spinner.js";
+
 $(document).ready(() => {
     $('#nav-brand').hover(() => {
         $('#dev')
@@ -26,6 +28,16 @@ $(document).ready(() => {
 
         $('#nav-icon').removeClass('text-warning')
     });
+
+    $("#line-number").inputSpinner({
+        template: `
+        <div class="input-group \${groupClass}">
+            <div class="input-group-prepend"></div>
+            <input type="text" inputmode="decimal" style="text-align: \${textAlign}" class="form-control"/>
+            <button style="min-width: \${buttonsWidth}" class="btn btn-decrement rounded-0 btn-outline-danger" type="button">\${decrementButton}</button>
+            <button style="min-width: \${buttonsWidth}; margin-right: 2.2px;" class="btn btn-increment rounded-0 btn-outline-success" type="button">\${incrementButton}</button>
+        </div>`
+    })
 });
 
 function showMessage(title, message) {
@@ -34,13 +46,27 @@ function showMessage(title, message) {
     $('#response-modal').modal('show');
 }
 
-function request(name, url) {
+window.request = (name, url) => {
     $.get(url)
         .done(response => showMessage(`${name} response`, response))
         .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
-}
+};
 
-function adder(url) {
+window.writeFile = url => {
+    $.ajax({
+        url: url,
+        data: {
+            line: $('#line-number').val()
+        },
+        headers: {
+            Accept: "text/plain"
+        }
+    })
+        .done(response => $('#write-result').html(response))
+        .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));
+};
+
+window.adder = url => {
     $.ajax({
         method: 'POST',
         url: url,
@@ -48,7 +74,10 @@ function adder(url) {
         data: JSON.stringify({
             a: Number($('#first-number').val()),
             b: Number($('#second-number').val())
-        })
+        }),
+        headers: {
+            Accept: "text/plain"
+        }
     })
         .done(response => $('#result').html(response.sha256))
         .fail(response => showMessage(`${name} error: ${response.status}!`, response.statusText));

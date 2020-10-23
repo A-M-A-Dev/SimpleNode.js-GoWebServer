@@ -7,5 +7,4 @@ function getUrlParameter(name) {
 
 $(document).ready(() => {
     $('#url').html(getUrlParameter('url'));
-    console.log(getUrlParameter('url'));
 });
