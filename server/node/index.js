@@ -51,7 +51,7 @@ app.all("*", (req, res) => {
 		res.redirect(`/helloworld/404.html?url=${fullUrl(req)}`);
 	} else if (req.accepts('json')) {
 		res.status(404);
-		res.send({ message: `${req.method}: ${fullUrl(req)} is not supported!` });
+		res.json({ message: `${req.method}: ${fullUrl(req)} is not supported!` });
 	} else {
 		res.status(404);
 		res.type('txt').send('Not found');

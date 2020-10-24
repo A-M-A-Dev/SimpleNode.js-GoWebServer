@@ -53,7 +53,7 @@ window.request = (name, url) => {
 };
 
 const getErrorMessage = jqXHR => {
-    if (jqXHR.contentType == 'application/json') {
+    if (jqXHR.contentType == 'application/json' || jqXHR.getResponseHeader('content-type').includes('json')) {
         return `${jqXHR.statusText}: ${JSON.parse(jqXHR.responseText).message}`;
     }
     if ((!jqXHR.contentType && jqXHR.responseText != "") || jqXHR.contentType == 'text/plain') {
