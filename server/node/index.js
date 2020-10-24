@@ -46,12 +46,12 @@ app.get("/helloworld/node/write", (req, res) => {
 	  })
 });
 
-app.get("*", (req, res) => {
+app.all("*", (req, res) => {
 	if (req.accepts('html')) {
 		res.redirect(`/helloworld/404.html?url=${fullUrl(req)}`);
 	} else if (req.accepts('json')) {
 		res.status(404);
-		res.send({ error: 'Not found' });
+		res.send({ message: `${req.method}: ${fullUrl(req)} is not supported!` });
 	} else {
 		res.status(404);
 		res.type('txt').send('Not found');
