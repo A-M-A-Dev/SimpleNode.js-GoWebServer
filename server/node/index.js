@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import fs from "fs";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import crypto from 'crypto' ;
 
 function fullUrl(req) {
 	return url.format({
@@ -42,20 +43,22 @@ app.get("/helloworld/node/write", (req, res) => {
 			res.status(400).send("Out of range line number");
 			return;
 		}
-		res.send(data[line-1])
+		res.send(data[line-1]);
 	  })
 });
 
-app.post("/helloworld/node/adder" , ( req , res )=>{
-	const a = req.body.a ;
-	const b = req.body.b ;
-	if( (! Number.isInteger(a) ) || (! Number.isInteger(b) ) ){
+app.post("/helloworld/node/sha256" , (req, res) => {
+	const a = req.body.a;
+	const b = req.body.b;
+	if((!Number.isInteger(a)) || (!Number.isInteger(b))) {
 		res.status(400).send("You should send only number as parameters");
-		return
+		return;
 	}
-	var sum = a+b ;
+	var sum = a+b;
 	const hash = crypto.createHash('sha256').update(sum.toString()).digest('hex');
-	const result = { sha256 : hash };
+	const result = {
+		sha256: hash
+	};
 	res.send(result);
 });
 
