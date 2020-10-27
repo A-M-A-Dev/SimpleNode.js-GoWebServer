@@ -28,11 +28,8 @@ type AdderRequestBody struct {
 }
 
 func writeJsonError(errorData ErrorData, w http.ResponseWriter) {
-	jsonData, err := json.Marshal(errorData)
-	if err != nil {
-		fmt.Fprintf(w, "Error : %s", err)
-	}
-	http.Error(w, string(jsonData), http.StatusBadRequest)
+	w.WriteHeader(http.StatusBadRequest)
+	json.NewEncoder(w).Encode(errorData)
 }
 
 func writeJsonAdderData(adderData AdderData, w http.ResponseWriter) {
