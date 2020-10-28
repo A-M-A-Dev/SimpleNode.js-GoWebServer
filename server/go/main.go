@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -28,11 +29,8 @@ type AdderRequestBody struct {
 }
 
 func writeJsonError(errorData ErrorData, w http.ResponseWriter) {
-	jsonData, err := json.Marshal(errorData)
-	if err != nil {
-		fmt.Fprintf(w, "Error : %s", err)
-	}
-	http.Error(w, string(jsonData), http.StatusBadRequest)
+	w.WriteHeader(http.StatusBadRequest)
+	json.NewEncoder(w).Encode(errorData)
 }
 
 func writeJsonAdderData(adderData AdderData, w http.ResponseWriter) {
@@ -65,6 +63,32 @@ func adder(w http.ResponseWriter, r *http.Request) {
 	writeJsonAdderData(data, w)
 }
 
+func write(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		w.WriteHeader(400)
+		w.Write([]byte("Sorry, only GET method is supported."))
+		return
+	}
+	line := r.URL.Query().Get("line")
+	intInput, err := strconv.Atoi(line)
+	if err != nil {
+		w.WriteHeader(400)
+		w.Write([]byte("Please Enter a valid line number."))
+		return
+	}
+	if intInput < 1 || intInput > 100 {
+		w.WriteHeader(400)
+		w.Write([]byte("Out of range line number"))
+		return
+	}
+	fileContent, er := ioutil.ReadFile("../data/text.txt")
+	if er == nil {
+		s := strings.Split(string(fileContent), "\n")
+		w.WriteHeader(200)
+		w.Write([]byte(s[intInput-1]))
+	}
+}
+
 func notFound(w http.ResponseWriter, r *http.Request) {
 	accepts := strings.ToLower(r.Header.Get("Accept"))
 
@@ -73,7 +97,7 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, redirectURL, http.StatusPermanentRedirect)
 	} else if strings.Contains(accepts, "json") {
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		http.Error(w, "{\"error\": \"Not found\"}", http.StatusNotFound)
+		writeJsonError(ErrorData{"Not Found"}, w)
 	} else {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		http.Error(w, "Not found", http.StatusNotFound)
@@ -84,6 +108,7 @@ func main() {
 	fmt.Println("start a simple web server...")
 	http.HandleFunc("/helloworld/go", helloWorld)
 	http.HandleFunc("/helloworld/go/adder", adder)
+	http.HandleFunc("/helloworld/go/write", write)
 	http.HandleFunc("/", notFound)
 	http.ListenAndServe(":8080", nil)
 }
