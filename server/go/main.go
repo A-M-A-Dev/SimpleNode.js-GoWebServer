@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -81,7 +82,8 @@ func write(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Out of range line number"))
 		return
 	}
-	fileContent, er := ioutil.ReadFile("../data/text.txt")
+	abs, err := filepath.Abs("../data/text.txt")
+	fileContent, er := ioutil.ReadFile(abs)
 	if er == nil {
 		s := strings.Split(string(fileContent), "\n")
 		w.WriteHeader(200)
