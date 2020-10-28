@@ -28,11 +28,8 @@ type AdderRequestBody struct {
 }
 
 func writeJsonError(errorData ErrorData, w http.ResponseWriter) {
-	jsonData, err := json.Marshal(errorData)
-	if err != nil {
-		fmt.Fprintf(w, "Error : %s", err)
-	}
-	http.Error(w, string(jsonData), http.StatusBadRequest)
+	w.WriteHeader(http.StatusBadRequest)
+	json.NewEncoder(w).Encode(errorData)
 }
 
 func writeJsonAdderData(adderData AdderData, w http.ResponseWriter) {
@@ -73,7 +70,7 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, redirectURL, http.StatusPermanentRedirect)
 	} else if strings.Contains(accepts, "json") {
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		http.Error(w, "{\"error\": \"Not found\"}", http.StatusNotFound)
+		writeJsonError(ErrorData{"Not Found"}, w)
 	} else {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		http.Error(w, "Not found", http.StatusNotFound)
