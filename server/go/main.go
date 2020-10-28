@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -65,6 +66,32 @@ func adder(w http.ResponseWriter, r *http.Request) {
 	writeJsonAdderData(data, w)
 }
 
+func write(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		w.WriteHeader(400)
+		w.Write([]byte("Sorry, only GET method is supported."))
+		return
+	}
+	line := r.URL.Query().Get("line")
+	intInput, err := strconv.Atoi(line)
+	if err != nil {
+		w.WriteHeader(400)
+		w.Write([]byte("Please Enter a valid line number."))
+		return
+	}
+	if intInput < 1 || intInput > 100 {
+		w.WriteHeader(400)
+		w.Write([]byte("Out of range line number"))
+		return
+	}
+	fileContent, er := ioutil.ReadFile("../data/text.txt")
+	if er == nil {
+		s := strings.Split(string(fileContent), "\n")
+		w.WriteHeader(200)
+		w.Write([]byte(s[intInput-1]))
+	}
+}
+
 func notFound(w http.ResponseWriter, r *http.Request) {
 	accepts := strings.ToLower(r.Header.Get("Accept"))
 
@@ -84,6 +111,7 @@ func main() {
 	fmt.Println("start a simple web server...")
 	http.HandleFunc("/helloworld/go", helloWorld)
 	http.HandleFunc("/helloworld/go/adder", adder)
+	http.HandleFunc("/helloworld/go/write", write)
 	http.HandleFunc("/", notFound)
 	http.ListenAndServe(":8080", nil)
 }
