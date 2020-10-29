@@ -52,7 +52,7 @@
 ## Depoyment
 
 - Systemd service configuration is available at [`/os/helloworld-node.service`](/os/helloworld-node.service)
-- In the mentioned file, change `<path/to/nodejs/main/file>` to absolute path od `indes.js` file
+- In the mentioned file, change `<path/to/nodejs/main/file>` to absolute path of `indes.js` file
 - Save the service file at `/lib/systemd/system/helloworld-node.service`
 - Enable the service:
 
