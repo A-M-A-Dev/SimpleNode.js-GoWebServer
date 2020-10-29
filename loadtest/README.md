@@ -49,7 +49,7 @@
 
 - Result as `http://localhost:8089` with 500 users:
 
-  ![](./loadtest/results/go_write.png)
+  ![](/loadtest/results/go_write.png)
   
 ### Node.js Adder
     
@@ -71,7 +71,7 @@
   
 - Result as `http://localhost:8089` with 500 users:
 
-  ![](./loadtest/results/node_adder.png)
+  ![](/loadtest/results/node_adder.png)
   
 ### Node.js Write
     
@@ -89,4 +89,4 @@
   
 - Result as `http://localhost:8089` with 500 users:
 
-  ![](./loadtest/results/node_write.png)
+  ![](/loadtest/results/node_write.png)
