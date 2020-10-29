@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -81,8 +82,15 @@ func write(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Out of range line number"))
 		return
 	}
-	fileContent, er := ioutil.ReadFile("../data/text.txt")
-	if er == nil {
+	filepath, err := os.Getwd()
+	fileContent, er := ioutil.ReadFile(filepath + "/../data/text.txt")
+	if err != nil {
+		w.WriteHeader(400)
+		w.Write([]byte("Working directory could not be found"))
+	} else if er != nil {
+		w.WriteHeader(400)
+		w.Write([]byte("Text file could not be found"))
+	} else {
 		s := strings.Split(string(fileContent), "\n")
 		w.WriteHeader(200)
 		w.Write([]byte(s[intInput-1]))
