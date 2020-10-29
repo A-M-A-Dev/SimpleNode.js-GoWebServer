@@ -2,7 +2,7 @@
 Description=helloworld go app
 
 [Service]
-WorkingDirectory=/home/ahmad/projects/helloworld/server/go
+WorkingDirectory=<path/to/go/executable/directory>
 Type=simple
 Restart=always
 RestartSec=2s
