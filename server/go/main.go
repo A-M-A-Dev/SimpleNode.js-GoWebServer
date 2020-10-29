@@ -84,7 +84,13 @@ func write(w http.ResponseWriter, r *http.Request) {
 	}
 	filepath, err := os.Getwd()
 	fileContent, er := ioutil.ReadFile(filepath + "/../data/text.txt")
-	if err == nil && er == nil {
+	if err != nil {
+		w.WriteHeader(400)
+		w.Write([]byte("Working directory could not be found"))
+	} else if er != nil {
+		w.WriteHeader(400)
+		w.Write([]byte("Text file could not be found"))
+	} else {
 		s := strings.Split(string(fileContent), "\n")
 		w.WriteHeader(200)
 		w.Write([]byte(s[intInput-1]))
