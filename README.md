@@ -6,7 +6,7 @@ A helloworld web application written by node.js and Go.
 
 [<img src="client/favicon.ico" width="5%"/>](https://github.com/A-M-A-Dev)
 
-This web application is created by **AMADev** team:
+This web application is created by [**AMADev**](https://github.com/A-M-A-Dev) team:
 
 - [Ahmad Salimi](https://github.com/ahmadsalimi)
 - [Arman Zarei](https://github.com/ArmanZarei)
