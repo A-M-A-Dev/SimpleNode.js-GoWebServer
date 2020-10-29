@@ -77,4 +77,9 @@
     proxy_pass http://localhost:3000;
   }
   ```
+- Restart Nginx service:
+
+```bash
+> sudo systemctl restart nginx
+```
 - Full Nginx config is available at [`/nginx/nginx-server-config`](/nginx/nginx-server-config)
